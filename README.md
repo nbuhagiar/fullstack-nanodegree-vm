@@ -1,4 +1,4 @@
-fullstack-nanodegree-vm
+restaurant-webapp
 =============
 
-Common code for the Relational Databases and Full Stack Fundamentals courses
+Code for Restaurant Web Application completed for [Udacity's Full Stack Foundations course](https://www.udacity.com/course/full-stack-foundations--ud088).

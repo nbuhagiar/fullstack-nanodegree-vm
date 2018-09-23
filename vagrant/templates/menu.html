@@ -1,0 +1,82 @@
+<html>
+<head>
+
+<title> {{restaurant.name}} </title>
+
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+
+<h1> {{restaurant.name}} </h1>
+
+<div class = "flash">
+
+{% with messages = get_flashed_messages() %}
+
+{% if messages %}
+
+<ul>
+
+{% for message in messages %}
+
+<li><strong> {{messages}} </strong></li>
+
+{% endfor %}
+
+</ul>
+
+{% endif %}
+
+{% endwith %}
+
+</div>
+
+<div>
+
+{% if items %}
+
+<p><a href="/restaurants/"> Back to Restaurants </a></p>
+
+<p><a href="/restaurant/{{restaurant.restaurant_id}}/edit/"> Edit Restaurant </a></p>
+
+<p><a href="/restaurant/{{restaurant.restaurant_id}}/delete/"> Delete Restaurant </a></p>
+
+<a href="/restaurant/{{restaurant.restaurant_id}}/menu/new/"> Create New Item </a> <br />
+
+{% for course in ["Appetizer", "Entree", "Dessert", "Beverage"] %}
+
+<h2> {{course}}s </h2>
+
+{% for item in items %}
+
+{% if item.course == course %}
+
+<p> 
+{{item.name}} <br />
+{{item.description}} <br />
+{{item.price}} <br />
+<a href="/restaurant/{{restaurant.restaurant_id}}/menu/{{item.menu_id}}/edit/"> Edit </a> <br />
+<a href="/restaurant/{{restaurant.restaurant_id}}/menu/{{item.menu_id}}/delete/"> Delete </a> <br />
+</p>
+
+{% endif %}
+
+{% endfor %}
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<p> You currently have no menu items. </p>
+
+<p><a href="#"> Create New Menu Item </a></p>
+
+{% endif %}
+
+</div>
+
+</body>
+</html>
